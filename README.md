@@ -4,8 +4,8 @@
 - [Compatibildad Vue 3 - Vite con Bootstrap-Vue, Font-Awesome, etc](https://platzi.com/tutoriales/1856-avanzado-vue/23120-compatibildad-vue-3-vite-con-bootstrap-vue-font-awesome-etc/)
 - [BootstrapVue with @vue/compat - StackBlitz](https://stackblitz.com/edit/bootstrap-vue-with-compat?file=vite.config.js)
 
-- `npm create vite@latest vite-bootstrap-vue`
-- `cd vite-bootstrap-vue`
+- `npm create vite@latest vite-vue3-bootstrap-vue`
+- `cd vite-vue3-bootstrap-vue`
 - `npm install`
 - `npm run dev`
 - http://localhost:5173/
