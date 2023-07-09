@@ -1,29 +1,73 @@
 # vite-bootstrap-vue
 
-This template should help get you started developing with Vue 3 in Vite.
+- [Starting with Bootstrap-Vue step by step](https://www.ma-no.org/en/programming/javascript/starting-with-bootstrap-vue-step-by-step)
+- [Compatibildad Vue 3 - Vite con Bootstrap-Vue, Font-Awesome, etc](https://platzi.com/tutoriales/1856-avanzado-vue/23120-compatibildad-vue-3-vite-con-bootstrap-vue-font-awesome-etc/)
+- [BootstrapVue with @vue/compat - StackBlitz](https://stackblitz.com/edit/bootstrap-vue-with-compat?file=vite.config.js)
 
-## Recommended IDE Setup
+- `npm create vite@latest vite-bootstrap-vue`
+- `cd vite-bootstrap-vue`
+- `npm install`
+- `npm run dev`
+- http://localhost:5173/
+- `npm install bootstrap-vue bootstrap@4.3.1`
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
+```js
+// vite.config.js
 
-## Customize configuration
+import { fileURLToPath, URL } from 'node:url'
 
-See [Vite Configuration Reference](https://vitejs.dev/config/).
+import { defineConfig } from 'vite'
+import vue from '@vitejs/plugin-vue'
 
-## Project Setup
+// https://vitejs.dev/config/
+export default defineConfig({
+  plugins: [
+    vue({
+      template: {
+        compilerOptions: {
+          compatConfig: {
+            MODE: 2
+          }
+        }
+      }
+    }),
+  ],
+  resolve: {
+    alias: {
+      vue: '@vue/compat',
+      '@': fileURLToPath(new URL('./src', import.meta.url))
+    }
+  }
+})
 
-```sh
-npm install
 ```
 
-### Compile and Hot-Reload for Development
+```js
+// src\main.js
 
-```sh
-npm run dev
+import './assets/main.css'
+
+// import { createApp } from 'vue'
+import Vue, { createApp } from "@vue/compat";
+import App from './App.vue'
+import router from './router'
+
+/*--------------------REGISTER BOOTSTRAP---------------------------------*/
+import { BootstrapVue, IconsPlugin } from "bootstrap-vue";
+// Import Bootstrap an BootstrapVue CSS files (order is important)
+import "bootstrap/dist/css/bootstrap.css";
+import "bootstrap-vue/dist/bootstrap-vue.css";
+// Make BootstrapVue available throughout your project
+Vue.use(BootstrapVue);
+// Optionally install the BootstrapVue icon components plugin
+Vue.use(IconsPlugin);
+/*-----------------------------------------------------------------------*/
+
+const app = createApp(App)
+
+app.use(router)
+
+app.mount('#app')
+
 ```
 
-### Compile and Minify for Production
-
-```sh
-npm run build
-```
